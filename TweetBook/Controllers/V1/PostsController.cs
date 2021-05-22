@@ -51,6 +51,17 @@ namespace TweetBook.Controllers.V1
             return NotFound();
         }
 
+        [HttpDelete(ApiRoutes.Posts.Delete)]
+        public IActionResult Delete([FromRoute] Guid postId)
+        {
+            var deleted = _postService.DeletePost(postId);
+
+            if (deleted)
+                return NoContent();
+
+            return NotFound();
+        }
+
         /// <summary>
         /// Created adds location in response header. In that case it needs to be added specifically when we use return Created.
         /// Requests and responses all should be versioned properly. That why we have different folder structures. 
