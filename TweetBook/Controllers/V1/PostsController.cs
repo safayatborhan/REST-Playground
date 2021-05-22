@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TweetBook.Contracts.V1;
 using TweetBook.Contracts.V1.Request;
@@ -28,7 +24,7 @@ namespace TweetBook.Controllers.V1
         }
 
         [HttpGet(ApiRoutes.Posts.Get)]
-        public IActionResult Get([FromRoute]Guid postId)
+        public IActionResult Get([FromRoute] Guid postId)
         {
             var post = _postService.GetPostById(postId);
 
@@ -36,6 +32,23 @@ namespace TweetBook.Controllers.V1
                 return NotFound();
 
             return Ok(post);
+        }
+
+        [HttpPut(ApiRoutes.Posts.Update)]
+        public IActionResult Updated([FromRoute] Guid postId, [FromBody] UpdatePostRequest request)
+        {
+            var post = new Post
+            {
+                Id = postId,
+                Name = request.Name
+            };
+
+            var updated = _postService.UpdatePost(post);
+
+            if (updated)
+                return Ok(post);
+
+            return NotFound();
         }
 
         /// <summary>
