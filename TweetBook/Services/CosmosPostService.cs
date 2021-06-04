@@ -77,5 +77,10 @@ namespace TweetBook.Services
 
             return response.IsSuccess;
         }
+
+        public async Task<bool> UserOwnPostAsync(Guid postId, string userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
