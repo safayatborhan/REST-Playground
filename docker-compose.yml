@@ -20,7 +20,7 @@ services:
     container_name: db-server
     environment:        
       - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=cse12345
+      - MSSQL_SA_PASSWORD=DockerSql12345
       - MSSQL_TCP_PORT=1433
     ports:
       - "1400:1433"
