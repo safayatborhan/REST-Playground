@@ -23,6 +23,7 @@ namespace TweetBook.Controllers.V1
         }
 
         [HttpGet(ApiRoutes.Posts.GetAll)]
+        [Authorize(Policy = "PostViewer")]
         public async Task<IActionResult> GetAll()
         {
             return Ok(await _postService.GetPostsAsync());
